@@ -384,7 +384,7 @@ function openChapter(i){
   }else{
     for(let p=1;p<=chapterPages[i];p++){
       const f=document.createElement('figure');f.className='rpage';
-      f.innerHTML=`<img loading="eager" src="assets/chapters/ch${String(i+1).padStart(2,'0')}/p${String(p).padStart(2,'0')}.jpg" alt="Chapter ${i+1}, page ${p}"><div class="rpgnum">&mdash; ${p} &mdash;</div>`;
+      f.innerHTML=`<img loading="eager" src="assets/chapters/ch${String(i+1).padStart(2,'0')}/p${String(p).padStart(2,'0')}.jpg?v=20260920" alt="Chapter ${i+1}, page ${p}"><div class="rpgnum">&mdash; ${p} &mdash;</div>`;
       rPages.appendChild(f);rio.observe(f);
     }
   }
