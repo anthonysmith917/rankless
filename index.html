@@ -1,162 +1,442 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="RANKLESS — A Desygn Shop Original. A cinematic manga series built around power, identity, and the fight to matter in a city ruled by rank.">
-  <meta name="theme-color" content="#09090d">
-  <meta property="og:title" content="RANKLESS — A Desygn Shop Original">
-  <meta property="og:description" content="Enter the manga series where rank decides everything, and one unnumbered fighter refuses to disappear.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://static.wixstatic.com/media/33290a_63bf2a607ebc4d788771f3b04383c754~mv2.png">
-  <title>RANKLESS — A Desygn Shop Original</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2309090d'/%3E%3Cpath d='M13 12h20c11 0 18 6 18 16 0 7-3 12-9 14l11 10H37L26 41v11H13V12Zm13 11v9h7c3 0 5-2 5-5s-2-4-5-4h-7Z' fill='%23f5f0e8'/%3E%3Cpath d='M8 51 56 11l-7 17 7-1-47 25Z' fill='%23d71920' fill-opacity='.82'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RANKLESS — S-rank was the ceiling. He brought a ladder.</title>
+<meta name="description" content="RANKLESS: a full-color manga from The Desygn Shop. Everyone awakens to one class. Kai Drane drew the gray card — and it can learn them all. Season 1: 15 chapters, 255 pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#191917; --ink2:#242422; --foot:#111110;
+  --cream:#f5f3ed; --white:#fff;
+  --blue:#216a9b; --sky:#5d96bc; --red:#b11d1e; --red-hi:#cf2627; --gold:#c1911f;
+  --silver:#a9bcc7; --muted:#6c6b67; --hair:rgba(25,25,23,.13);
+  --r:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+h1,h2,h3{font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-.045em;line-height:1.02}
+img{display:block;max-width:100%}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+.eyebrow::before{content:'';width:34px;height:4px;background:var(--red);border-radius:2px;flex:none}
+.on-dark .eyebrow{color:var(--silver)}
+.reveal{opacity:0;transform:translateY(46px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+
+/* announcement */
+.announce{background:var(--ink);color:var(--cream);text-align:center;font-size:12px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;padding:11px 16px}
+.announce b{color:var(--gold);font-weight:700;margin:0 14px}
+
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(245,243,237,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hair)}
+.hwrap{max-width:1280px;margin:0 auto;padding:14px 5vw;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:'Manrope';font-weight:800;font-size:22px;letter-spacing:.06em;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--blue)}
+nav.links{display:flex;gap:32px;align-items:center}
+nav.links a.nl{color:var(--ink);text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;position:relative}
+nav.links a.nl::after{content:'';position:absolute;left:0;bottom:-6px;height:3px;width:0;background:var(--red);border-radius:2px;transition:width .3s}
+nav.links a.nl:hover::after{width:100%}
+.btn{display:inline-block;padding:14px 32px;border-radius:999px;background:var(--red);color:#fff;text-decoration:none;
+  font-size:14px;font-weight:800;letter-spacing:.06em;transition:.3s;border:none;cursor:pointer;font-family:'DM Sans'}
+.btn:hover{background:var(--red-hi);transform:translateY(-2px);box-shadow:0 12px 28px rgba(177,29,30,.35)}
+.btn.blue{background:var(--blue)}.btn.blue:hover{background:#2b7fb8;box-shadow:0 12px 28px rgba(33,106,155,.35)}
+.btn.ghost{background:transparent;color:var(--cream);border:2px solid rgba(245,243,237,.35)}
+.btn.ghost:hover{border-color:var(--cream);box-shadow:none;background:rgba(245,243,237,.08)}
+
+/* hero */
+.hero{background:var(--ink);color:var(--cream);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(245,243,237,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(245,243,237,.045) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 75%)}
+.hgrid{max-width:1280px;margin:0 auto;padding:96px 5vw 110px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:2}
+.herovid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;opacity:.2;
+  pointer-events:none;filter:saturate(1.05) brightness(.9);z-index:0}
+.hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(25,25,23,.6),rgba(25,25,23,.28) 45%,rgba(25,25,23,.72))}
+.hero .eyebrow{color:var(--silver)}
+.hero h1{font-size:clamp(46px,6.2vw,92px);color:#fff;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--sky)}
+.hero p.sub{font-size:19px;line-height:1.65;color:#c9c7bd;max-width:520px;margin-bottom:38px}
+.hero p.sub b{color:#fff}
+.hcta{display:flex;gap:16px;flex-wrap:wrap}
+.artwrap{position:relative;display:flex;justify-content:center}
+.coverframe{position:relative;width:min(380px,80%);z-index:2}
+.artwrap .cover{width:100%;border-radius:28px;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 90px rgba(93,150,188,.28);
+  border:1px solid rgba(245,243,237,.12);position:relative;z-index:1}
+.coverfx{position:absolute;inset:0;width:100%;height:100%;border-radius:28px;pointer-events:none;z-index:2;mix-blend-mode:screen}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-16px) rotate(1deg)}}
+.orbit{position:absolute;top:50%;left:50%;width:min(520px,110%);aspect-ratio:1;transform:translate(-50%,-50%);
+  border:1px dashed rgba(193,145,31,.4);border-radius:50%;animation:spin 40s linear infinite}
+.orbit::before,.orbit::after{content:'';position:absolute;border-radius:50%}
+.orbit::before{width:12px;height:12px;background:var(--gold);box-shadow:0 0 18px var(--gold);top:6%;left:12%}
+.orbit::after{width:9px;height:9px;background:var(--red-hi);box-shadow:0 0 16px var(--red-hi);bottom:10%;right:8%}
+.orbit.o2{width:min(640px,132%);animation-duration:65s;animation-direction:reverse;border-color:rgba(93,150,188,.3)}
+.orbit.o2::before{background:var(--sky);box-shadow:0 0 18px var(--sky);top:12%;right:6%;left:auto}
+.orbit.o2::after{display:none}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.tag{position:absolute;z-index:3;background:rgba(245,243,237,.1);border:1px solid rgba(245,243,237,.22);backdrop-filter:blur(10px);
+  color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;padding:10px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.35);
+  animation:float 6s ease-in-out infinite}
+.tag.t1{top:8%;left:2%}.tag.t2{bottom:14%;left:0;animation-delay:1.4s}.tag.t3{top:38%;right:0;animation-delay:2.6s}
+
+/* marquee */
+.marquee{background:var(--blue);overflow:hidden;white-space:nowrap;padding:15px 0}
+.mtrack{display:inline-block;animation:slide 30s linear infinite;color:#fff;font-family:'Manrope';font-weight:800;
+  font-size:17px;letter-spacing:.24em;text-transform:uppercase}
+.mtrack b{color:var(--gold);font-weight:800;margin:0 26px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* light sections */
+section.block{padding:104px 5vw}
+.wrap{max-width:1200px;margin:0 auto}
+.block h2{font-size:clamp(36px,4.6vw,62px);margin-bottom:18px}
+.lede{font-size:18px;line-height:1.7;color:var(--muted);max-width:740px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.fcard{background:#fff;border:1px solid var(--hair);border-radius:var(--r);padding:34px 30px;box-shadow:0 6px 24px rgba(25,25,23,.06);
+  transition:transform .3s,box-shadow .3s}
+.fcard:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(25,25,23,.13)}
+.chip{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font-family:'Manrope';font-weight:800;font-size:19px;color:#fff;margin-bottom:20px}
+.chip.b{background:var(--blue)}.chip.r{background:var(--red)}.chip.g{background:var(--gold)}
+.fcard h3{font-size:24px;letter-spacing:-.02em;margin-bottom:10px}
+.fcard p{color:var(--muted);font-size:15px;line-height:1.7}
+.storyart{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:56px}
+.storyart img{border-radius:var(--r);box-shadow:0 24px 60px rgba(25,25,23,.16);border:1px solid var(--hair);width:100%}
+
+/* moments (dark animated strip) */
+.moments{background:var(--ink);color:var(--cream);position:relative;overflow:hidden}
+.moments::before{content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(245,243,237,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,243,237,.04) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 25%,transparent 78%)}
+.moments .wrap{position:relative}
+.moments h2{color:#fff}
+.moments h2 em{font-style:normal;color:var(--sky)}
+.moments .lede{color:#a5a39a}
+.panel{margin:72px auto;max-width:860px;opacity:0;transform:translateY(60px) scale(.965);filter:saturate(.9);
+  transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease}
+.panel.visible{opacity:1;transform:none;filter:none}
+.panel:nth-child(odd of .panel).visible{transform:none}
+.panel img{width:100%;border-radius:20px;border:1px solid rgba(245,243,237,.14);
+  box-shadow:0 34px 90px rgba(0,0,0,.6)}
+.panel figcaption{margin-top:16px;display:flex;align-items:center;gap:12px;color:var(--silver);
+  font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.panel figcaption::before{content:'';width:26px;height:3px;background:var(--red);border-radius:2px;flex:none}
+.panel.glow img{animation:glowpulse 3.2s ease-in-out infinite;border-color:rgba(93,150,188,.5)}
+@keyframes glowpulse{0%,100%{box-shadow:0 34px 90px rgba(0,0,0,.6),0 0 34px rgba(93,150,188,.25)}50%{box-shadow:0 34px 90px rgba(0,0,0,.6),0 0 70px rgba(93,150,188,.55)}}
+.pnote{text-align:center;color:#8b897f;font-size:14px;margin-top:20px;letter-spacing:.06em}
+
+/* chapter reader popup */
+.reader{position:fixed;inset:0;z-index:200;background:rgba(12,12,10,.97);display:none;flex-direction:column}
+.reader.open{display:flex}
+.rhead{display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;border-bottom:1px solid rgba(245,243,237,.12);color:#fff;flex:none}
+.reye{font-size:10px;font-weight:800;letter-spacing:.24em;color:var(--silver);text-transform:uppercase;margin-bottom:4px}
+#rTitle{font-family:'Manrope';font-weight:800;font-size:20px;letter-spacing:-.02em}
+#rClose{background:none;border:1px solid rgba(245,243,237,.3);color:#fff;width:44px;height:44px;border-radius:50%;font-size:17px;cursor:pointer;flex:none}
+#rClose:hover{background:var(--red);border-color:var(--red)}
+.rbody{flex:1;overflow-y:auto;padding:36px 5vw;-webkit-overflow-scrolling:touch}
+.rpage{max-width:760px;margin:0 auto 30px;opacity:0;transform:translateY(44px) scale(.98);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rpage.visible{opacity:1;transform:none}
+.rpage img{width:100%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.rpgnum{text-align:center;margin-top:10px;color:#6f6d64;font-size:11px;font-weight:700;letter-spacing:.3em}
+.rfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 5vw;border-top:1px solid rgba(245,243,237,.12);color:#fff;flex:none}
+.rfoot button{background:var(--red);color:#fff;border:none;border-radius:999px;padding:11px 24px;font-weight:800;cursor:pointer;font-size:13px;font-family:'DM Sans'}
+.rfoot button:disabled{opacity:.25;cursor:default}
+.rfoot button:not(:disabled):hover{background:var(--red-hi)}
+#rCount{font-size:11px;letter-spacing:.24em;color:var(--silver);font-weight:700}
+.chap{cursor:pointer}
+.chap .tap{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-top:12px;display:block}
+.chap.locked .tap{color:var(--muted)}
+.lockbadge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--ink);
+  padding:7px 14px;border-radius:999px;margin-bottom:14px;text-transform:uppercase}
+.rlock{max-width:520px;margin:9vh auto;text-align:center;color:#fff;padding:40px 20px;animation:rlockin .5s ease}
+@keyframes rlockin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.rlock .big{font-size:64px;margin-bottom:22px;filter:drop-shadow(0 0 24px rgba(193,145,31,.5))}
+.rlock h3{font-size:30px;letter-spacing:-.02em;margin-bottom:12px}
+.rlock p{color:#a5a39a;line-height:1.7;font-size:16px}
+.rlock p b{color:var(--gold);letter-spacing:.18em}
+
+/* chapters */
+.chap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:54px}
+.chap{background:#fff;border:1px solid var(--hair);border-radius:18px;padding:28px 24px;position:relative;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;box-shadow:0 6px 24px rgba(25,25,23,.06)}
+.chap:hover{transform:translateY(-7px);box-shadow:0 20px 46px rgba(25,25,23,.14)}
+.cnum{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.2em;color:#fff;padding:7px 14px;border-radius:999px;margin-bottom:16px}
+.cnum.b{background:var(--blue)}.cnum.r{background:var(--red)}.cnum.g{background:var(--gold)}
+.chap h3{font-size:21px;letter-spacing:-.02em;margin-bottom:8px}
+.chap .pg{font-size:12.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.season-note{margin-top:36px;text-align:center;color:var(--muted);font-size:14px;letter-spacing:.06em}
+.season-note b{color:var(--red);letter-spacing:.2em}
+
+/* characters (dark) */
+.chars{background:var(--ink2);color:var(--cream)}
+.chars h2{color:#fff}.chars .lede{color:#a5a39a}
+.cgrid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:center;margin-top:56px}
+.cgrid img.frame{border-radius:var(--r);border:1px solid rgba(245,243,237,.14);box-shadow:0 30px 80px rgba(0,0,0,.5);width:100%}
+.stat{display:flex;gap:16px;margin-top:22px;align-items:baseline}
+.stat .k{font-size:11px;font-weight:800;letter-spacing:.26em;color:var(--silver);text-transform:uppercase;min-width:104px;flex:none}
+.stat .v{font-size:15.5px;line-height:1.65}
+.quote{margin-top:32px;padding:26px 30px;border-left:4px solid var(--red);background:rgba(245,243,237,.05);
+  font-size:17.5px;line-height:1.7;font-style:italic;border-radius:0 14px 14px 0}
+.quote cite{display:block;margin-top:12px;font-style:normal;font-size:11.5px;letter-spacing:.26em;color:var(--silver);text-transform:uppercase}
+.caststrip{margin-top:64px}
+.caststrip img{border-radius:var(--r);border:1px solid rgba(245,243,237,.14);width:100%}
+
+/* cta card */
+.ctawrap{background:var(--cream);padding:104px 5vw}
+.ctacard{max-width:1100px;margin:0 auto;background:linear-gradient(120deg,#8f1516,#b11d1e 55%,#7c1213);
+  border-radius:34px;padding:88px 8vw;text-align:center;color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 40px 100px rgba(177,29,30,.35)}
+.ctacard::before{content:'\2726';position:absolute;font-size:340px;color:rgba(255,255,255,.07);top:-70px;right:-30px;transform:rotate(18deg)}
+.ctacard h2{color:#fff;font-size:clamp(40px,5.6vw,76px);margin-bottom:20px;position:relative}
+.ctacard p{color:rgba(255,255,255,.85);font-size:18px;line-height:1.7;max-width:600px;margin:0 auto 40px;position:relative}
+.btn.white{background:#fff;color:var(--red);position:relative}
+.btn.white:hover{background:var(--cream);box-shadow:0 14px 34px rgba(0,0,0,.3);transform:translateY(-2px)}
+
+/* footer */
+footer{background:var(--foot);color:#8b897f;padding:64px 5vw 40px;text-align:center}
+.flogo{font-family:'Manrope';font-weight:800;font-size:24px;letter-spacing:.1em;color:#fff;margin-bottom:12px}
+.flogo span{color:var(--sky)}
+footer a{color:var(--sky);text-decoration:none}footer a:hover{text-decoration:underline}
+.fine{margin-top:24px;font-size:12px;color:#5c5a53;letter-spacing:.05em}
+
+@media(max-width:940px){
+  .hgrid,.cgrid{grid-template-columns:1fr;gap:44px}
+  .feat{grid-template-columns:1fr}
+  nav.links a.nl{display:none}
+  .storyart{grid-template-columns:1fr}
+  section.block{padding:76px 5vw}
+  .tag.t3{display:none}
+}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Rankless home">RANKLESS</a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#story">Story</a>
-      <a href="#latest">Latest</a>
-      <a href="#cast">Cast</a>
-      <a href="#library">Library</a>
+<div class="announce"><b>&#10022;</b> Be on the lookout &mdash; Season 1 complete: 15 chapters, 255 pages in full color <b>&#10022;</b></div>
+
+<header>
+  <div class="hwrap">
+    <a class="brand" href="#top">RANK<span>LESS</span></a>
+    <nav class="links">
+      <a class="nl" href="#story">Story</a>
+      <a class="nl" href="#moment">The moment</a>
+      <a class="nl" href="#chapters">Chapters</a>
+      <a class="nl" href="#characters">Characters</a>
+      <a class="btn" href="https://www.thedesygnshop.com" target="_blank" rel="noopener">Visit the Shop</a>
     </nav>
-    <a class="shop-link" href="https://thedesygnshop.com">The Desygn Shop</a>
-  </header>
+  </div>
+</header>
 
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <p class="series-label">A Desygn Shop Original Manga</p>
-        <h1 id="hero-title">RANKLESS</h1>
-        <p class="hero-tagline">In a city where your number decides your future, the most dangerous fighter is the one the system cannot rank.</p>
-        <div class="hero-actions" aria-label="Rankless actions">
-          <a class="button primary" href="#latest">Read the latest</a>
-          <a class="button ghost" href="#library">Browse chapters</a>
-        </div>
+<div class="hero" id="top">
+  <video class="herovid" autoplay muted loop playsinline preload="metadata" poster="assets/kai-bg-poster.jpg" aria-hidden="true" tabindex="-1"><source src="assets/kai-bg.mp4" type="video/mp4"></video>
+  <div class="hgrid">
+    <div>
+      <div class="eyebrow reveal">A full-color manga &mdash; Season 1</div>
+      <h1 class="reveal d1">S-rank was the ceiling. He brought a <em>ladder.</em></h1>
+      <p class="sub reveal d2">Everyone awakens to <b>one class</b>. Kai Drane drew the gray card &mdash; the one the system calls <b>Unclassified</b> &mdash; and it can learn <b>them all</b>.</p>
+      <div class="hcta reveal d3">
+        <a class="btn" href="#chapters">Explore 15 chapters</a>
+        <button class="btn ghost" onclick="openChapter(0)">Read Chapter 1 free</button>
       </div>
-      <figure class="cover-panel">
-        <img src="https://static.wixstatic.com/media/33290a_63bf2a607ebc4d788771f3b04383c754~mv2.png" alt="Rankless manga artwork featuring Kai Drane.">
-        <figcaption>RANKLESS — A Desygn Shop Original.</figcaption>
-      </figure>
-    </section>
+    </div>
+    <div class="artwrap">
+      <div class="orbit"></div><div class="orbit o2"></div>
+      <div class="coverframe reveal d2">
+        <img class="cover" src="assets/cover.jpg" alt="RANKLESS official cover — Kai Drane">
+        <canvas class="coverfx" id="coverfx"></canvas>
+      </div>
+      <div class="tag t1">Full color</div>
+      <div class="tag t2">15 chapters</div>
+      <div class="tag t3">Fusion Arts</div>
+    </div>
+  </div>
+</div>
 
-    <section class="ticker" aria-label="Series themes">
+<div class="marquee"><div class="mtrack" id="mtrack"></div></div>
+
+<section class="block" id="story">
+  <div class="wrap">
+    <div class="eyebrow reveal">The premise</div>
+    <h2 class="reveal d1">The worst of everything.<br>Until he wasn't.</h2>
+    <p class="lede reveal d2">Three hundred years after the Gates opened, every sixteen-year-old draws a class card &mdash; Warrior, Mage, Rogue, Tamer, Healer &mdash; and climbs one ladder from F to S. No one has ever passed S. Then Kai Drane, the joke of his Awakening, draws a flat gray card. F in everything. The worst fighter, worst mage, worst rogue in any room. Until he discovers what the gray card really does.</p>
+    <div class="feat">
+      <div class="fcard reveal"><div class="chip b">01</div><h3>Learn any class</h3><p>The Gray can learn every class's skills &mdash; warrior's slash, mage's spark, rogue's dash, tamer's bond, healer's mend. Each leveled separately, from zero.</p></div>
+      <div class="fcard reveal d1"><div class="chip r">02</div><h3>Fusion Arts</h3><p>Skills combined mid-motion become something new. A charge fused with a blink becomes a teleporting strike &mdash; exponentially stronger than its parts.</p></div>
+      <div class="fcard reveal d2"><div class="chip g">03</div><h3>No ceiling</h3><p>Specialists add. The Gray multiplies. Breadth times breadth, compounding forever &mdash; Kai isn't climbing one ladder. He's building his own.</p></div>
+    </div>
+    <div class="storyart">
+      <div class="reveal"><img src="assets/action-wolves.jpg" alt="The hound pack closes in"></div>
+      <div class="reveal d1"><img src="assets/action-sword.jpg" alt="Kai's shortsword shatters against the alpha"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block moments" id="moment">
+  <div class="wrap">
+    <div class="eyebrow reveal on-dark">Chapter 1 &mdash; "The Gray Card"</div>
+    <h2 class="reveal d1">The moment <em>everything changed.</em></h2>
+    <p class="lede reveal d2">Scroll through the night Kai stopped being the joke &mdash; panels wake up as you reach them.</p>
+
+    <figure class="panel"><img src="assets/splash.jpg" alt="Kai cornered by gate hounds before the vortex"><figcaption>Cornered</figcaption></figure>
+    <figure class="panel"><img src="assets/action-wolves.jpg" alt="The hound pack closes in"><figcaption>The pack closes in</figcaption></figure>
+    <figure class="panel"><img src="assets/action-sword.jpg" alt="The steel shortsword shatters"><figcaption>The sword shatters</figcaption></figure>
+    <figure class="panel glow"><img src="assets/panel-rank.jpg" alt="Scanner printout: RANK ???"><figcaption>The scanner glitches</figcaption></figure>
+    <figure class="panel"><img src="assets/panel-examiner.jpg" alt="Kai grins: Morning, examiner"><figcaption>Morning, examiner</figcaption></figure>
+    <figure class="panel"><img src="assets/panel-rooftop.jpg" alt="Kai on the rooftop at dawn — He brought a ladder"><figcaption>He brought a ladder</figcaption></figure>
+
+    <p class="pnote reveal">Chapter 1 is free &mdash; tap it below to read. The rest are locked&hellip; for now.</p>
+  </div>
+</section>
+
+<section class="block" id="chapters">
+  <div class="wrap">
+    <div class="eyebrow reveal">Season 1</div>
+    <h2 class="reveal d1">Fifteen chapters.<br>Two hundred fifty-five pages.</h2>
+    <p class="lede reveal d2">The complete first season in full color &mdash; from the Awakening Hall to the night the Gate noticed him back. Chapter 1 is free to read; the rest drop soon.</p>
+    <div class="chap-grid" id="chapGrid"></div>
+    <p class="season-note reveal"><b>BE ON THE LOOKOUT</b> &mdash; new chapters drop here first.</p>
+  </div>
+</section>
+
+<section class="block chars" id="characters">
+  <div class="wrap">
+    <div class="eyebrow reveal on-dark">The cast</div>
+    <h2 class="reveal d1">Meet Kai Drane.</h2>
+    <div class="cgrid">
+      <div class="reveal"><img class="frame" src="assets/kai-board.jpg" alt="Kai Drane character board"></div>
       <div>
-        <span>No rank</span><b>/</b><span>No crown</span><b>/</b><span>No surrender</span><b>/</b><span>Original manga series</span>
+        <p class="lede reveal d1">Seventeen. Messy dark hair with one silver-white streak, amber eyes, a dark-gray high-collar jacket with glowing cyan seams. The boy the system measured as the worst of everything &mdash; and the only one it couldn't measure at all.</p>
+        <div class="stat reveal d1"><span class="k">Class</span><span class="v">Gray &mdash; Unclassified (myth-tier)</span></div>
+        <div class="stat reveal d2"><span class="k">Rank</span><span class="v">F in everything&hellip; for now</span></div>
+        <div class="stat reveal d2"><span class="k">Engine</span><span class="v">Fusion Arts &mdash; skills combined mid-motion</span></div>
+        <div class="quote reveal d3">&ldquo;The card doesn't get to decide who you are. You do.&rdquo;<cite>&mdash; Mira Drane</cite></div>
       </div>
-    </section>
+    </div>
+    <div class="caststrip reveal"><img src="assets/cast.jpg" alt="RANKLESS main cast"></div>
+  </div>
+</section>
 
-    <section class="section synopsis" id="story" aria-labelledby="story-title">
-      <div class="section-kicker">Series Synopsis</div>
-      <div class="synopsis-grid">
-        <h2 id="story-title">Everyone gets one class. Kai drew the card that should not exist.</h2>
-        <div class="synopsis-copy">
-          <p>For three hundred years, every awakened fighter has received one class and climbed the same ladder from F to S. Kai Drane drew a gray card: unclassified, unwanted, and able to learn every class only by starting each one from zero.</p>
-          <p>When Kai discovers that weak skills can be fused into techniques the system cannot measure, he becomes the anomaly the Awakening Bureau fears. S-rank was the ceiling. He brought a ladder.</p>
-        </div>
-      </div>
-    </section>
+<div class="ctawrap">
+  <div class="ctacard reveal">
+    <h2>Be on the lookout.</h2>
+    <p>Season 1 is complete. The Gate has noticed him &mdash; and Season 2 is already stirring. New chapters, art drops, and the road to animation, all from The Desygn Shop.</p>
+    <a class="btn white" href="https://www.thedesygnshop.com" target="_blank" rel="noopener">Visit The Desygn Shop</a>
+  </div>
+</div>
 
-    <section class="section latest" id="latest" aria-labelledby="latest-title">
-      <div class="chapter-feature">
-        <div>
-          <p class="section-kicker">Latest Issue</p>
-          <h2 id="latest-title">Issue 001: The Gray Card</h2>
-          <p>Cornered by a gate-hound with only three weak F-rank skills, Kai discovers the first Fusion Art and walks out carrying loot from a gate that should have killed him.</p>
-          <div class="chapter-meta">
-            <span>Status: Coming Soon</span>
-            <span>Format: Digital Manga</span>
-            <span>Season: One</span>
-          </div>
-        </div>
-        <a class="button primary" href="#library">View library</a>
-      </div>
-    </section>
+<footer>
+  <div class="flogo">RANK<span>LESS</span></div>
+  <div>A Desygn Shop original &mdash; <a href="https://www.thedesygnshop.com" target="_blank" rel="noopener">thedesygnshop.com</a> &middot; Site v5</div>
+  <div class="fine">&copy; 2026 The Desygn Shop. All rights reserved. RANKLESS and all related characters, art, and story are the property of their creator.</div>
+</footer>
 
-    <section class="section cast" id="cast" aria-labelledby="cast-title">
-      <p class="section-kicker">Characters / Cast</p>
-      <h2 id="cast-title">The ones who challenge the ceiling.</h2>
-      <div class="cast-grid">
-        <article>
-          <span>01</span>
-          <h3>Kai Drane</h3>
-          <p>The Gray Card awakener. He can learn every class and fuse their weakest skills into something new.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Rin Kaida</h3>
-          <p>An A-rank mage prodigy whose certainty about the system begins to fracture when Kai survives the impossible.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Maro Venn</h3>
-          <p>A retired S-rank warrior who becomes the first authority figure to treat the Gray as a discipline.</p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3>Dana Okafor</h3>
-          <p>A guild handler who notices the records do not match Kai's cleared gates and quietly starts digging.</p>
-        </article>
-        <article>
-          <span>05</span>
-          <h3>Mira Drane</h3>
-          <p>Kai's older sister, a B-rank healer, and the one person who never laughed at the gray card.</p>
-        </article>
-        <article>
-          <span>06</span>
-          <h3>Ilya Rook</h3>
-          <p>The Bureau director who believes the rank system must hold, even if Kai has to disappear inside it.</p>
-        </article>
-      </div>
-    </section>
+<div class="reader" id="reader" aria-hidden="true" role="dialog" aria-label="Chapter reader">
+  <div class="rhead">
+    <div><div class="reye">Chapter <span id="rNum">01</span> &mdash; Season 1</div><div id="rTitle"></div></div>
+    <button id="rClose" aria-label="Close reader">&#10005;</button>
+  </div>
+  <div class="rbody" id="rBody"><div id="rPages"></div></div>
+  <div class="rfoot">
+    <button id="rPrev">&larr; Prev chapter</button>
+    <span id="rCount"></span>
+    <button id="rNext">Next chapter &rarr;</button>
+  </div>
+</div>
 
-    <section class="section library" id="library" aria-labelledby="library-title">
-      <div class="library-heading">
-        <div>
-          <p class="section-kicker">Chapter Library</p>
-          <h2 id="library-title">Built to grow issue by issue.</h2>
-        </div>
-        <p>New chapters can be added as standalone cards with cover art, status, release dates, and read links.</p>
-      </div>
-      <div class="issue-list">
-        <article>
-          <span>Issue 001</span>
-          <h3>The Gray Card</h3>
-          <p>Coming soon</p>
-        </article>
-        <article>
-          <span>Issue 002</span>
-          <h3>Another One for the Graveyard</h3>
-          <p>In development</p>
-        </article>
-        <article>
-          <span>Issue 003</span>
-          <h3>Rank: ???</h3>
-          <p>In development</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section shop-return" aria-labelledby="shop-return-title">
-      <p class="section-kicker">The Desygn Shop</p>
-      <h2 id="shop-return-title">Created under The Desygn Shop brand.</h2>
-      <p>Rankless is an original manga property from The Desygn Shop. Visit the main site for custom design, apparel, print work, and future original-series releases.</p>
-      <a class="button ghost dark" href="https://thedesygnshop.com">Back to The Desygn Shop</a>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>RANKLESS — A Desygn Shop Original.</p>
-    <a href="https://thedesygnshop.com">thedesygnshop.com</a>
-  </footer>
+<script>
+// chapters
+const chapters=[
+ ["The Gray Card",16],["The Joke That Wouldn't Die",16],["The Grind Pays",17],
+ ["The Student",17],["Fusion",18],["The File",16],["Into the Surge",16],
+ ["The Proof",15],["Protective Custody",18],["The Surge",18],
+ ["The Deep Gate",18],["Above S",18],["The Second Gray",17],
+ ["The Erased",18],["The Gate Notices",17]
+];
+const cols=['b','r','g'],grid=document.getElementById('chapGrid');
+chapters.forEach(([t,p],i)=>{
+  const d=document.createElement('div');
+  const locked=i>0;
+  d.className='chap reveal'+(locked?' locked':'');d.title=locked?'Locked — be on the lookout':'Tap to read';
+  d.innerHTML=`<span class="cnum ${cols[i%3]}">Chapter ${String(i+1).padStart(2,'0')}</span>`+(locked?`<br><span class="lockbadge">&#128274; Locked</span>`:'')+`<h3>${t}</h3><div class="pg">${p} pages &mdash; full color</div>`+(locked?`<span class="tap">Be on the lookout</span>`:`<span class="tap">Tap to read &rarr;</span>`);
+  d.onclick=()=>openChapter(i);
+  grid.appendChild(d);
+});
+// chapter reader popup
+const chapterPages=[16,16,17,17,18,16,16,15,18,18,18,18,17,18,17];
+let curCh=0;
+const reader=document.getElementById('reader'),rBody=document.getElementById('rBody'),rPages=document.getElementById('rPages');
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');rio.unobserve(e.target)}}),{root:rBody,threshold:.08});
+function openChapter(i){
+  curCh=i;
+  const locked=i>0;
+  document.getElementById('rNum').textContent=String(i+1).padStart(2,'0');
+  document.getElementById('rTitle').textContent=chapters[i][0];
+  rPages.innerHTML='';
+  if(locked){
+    rPages.innerHTML=`<div class="rlock"><div class="big">&#128274;</div><h3>Chapter ${i+1} is locked</h3><p><b>BE ON THE LOOKOUT</b><br>New chapters drop here first.</p></div>`;
+  }else{
+    for(let p=1;p<=chapterPages[i];p++){
+      const f=document.createElement('figure');f.className='rpage';
+      f.innerHTML=`<img loading="lazy" src="assets/chapters/ch${String(i+1).padStart(2,'0')}/p${String(p).padStart(2,'0')}.jpg" alt="Chapter ${i+1}, page ${p}"><div class="rpgnum">&mdash; ${p} &mdash;</div>`;
+      rPages.appendChild(f);rio.observe(f);
+    }
+  }
+  rBody.scrollTop=0;
+  document.getElementById('rPrev').disabled=i===0;
+  document.getElementById('rNext').disabled=i===chapterPages.length-1;
+  document.getElementById('rCount').textContent=locked?'LOCKED':`${chapterPages[i]} PAGES`;
+  reader.classList.add('open');reader.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeReader(){reader.classList.remove('open');reader.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.getElementById('rClose').onclick=closeReader;
+document.getElementById('rPrev').onclick=()=>{if(curCh>0)openChapter(curCh-1)};
+document.getElementById('rNext').onclick=()=>{if(curCh<chapterPages.length-1)openChapter(curCh+1)};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&reader.classList.contains('open'))closeReader()});
+reader.addEventListener('click',e=>{if(e.target===reader)closeReader()});
+// marquee
+const m='Be on the lookout <b>&#10022;</b> Full color <b>&#10022;</b> 15 chapters <b>&#10022;</b> 255 pages <b>&#10022;</b> ';
+document.getElementById('mtrack').innerHTML=m+m;
+// reveals (slight stagger for panels via transition-delay set inline)
+document.querySelectorAll('.panel').forEach((p,i)=>{p.style.transitionDelay=(i*0.06)+'s'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.18});
+document.querySelectorAll('.reveal,.panel').forEach(el=>io.observe(el));
+// background video: hold on the still frame when reduced motion is requested
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){const hv=document.querySelector('.herovid');if(hv){hv.pause();hv.removeAttribute('autoplay');}}
+// living cover: ember particles drift over the static art (art itself never moves)
+(function(){
+  const cv=document.getElementById('coverfx');if(!cv)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const ctx=cv.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);
+  let W,H,parts=[];
+  function spawn(init){return{x:Math.random()*W,y:init?Math.random()*H:H+10,r:(Math.random()*2.2+.8)*dpr,
+    s:(Math.random()*.6+.25)*dpr,sw:Math.random()*1.2+.3,ph:Math.random()*6.28,
+    c:Math.random()<.55?'193,145,31':(Math.random()<.5?'93,150,188':'255,240,210'),a:Math.random()*.5+.25};}
+  function init(){const r=cv.getBoundingClientRect();W=cv.width=Math.max(1,r.width*dpr);H=cv.height=Math.max(1,r.height*dpr);
+    parts=Array.from({length:70},()=>spawn(true));}
+  init();addEventListener('resize',init);
+  const _img=cv.previousElementSibling;
+  if(_img&&_img.complete)init();else if(_img)_img.addEventListener('load',init);
+  setTimeout(init,1200);
+  (function tick(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of parts){
+      p.y-=p.s;p.ph+=.02;p.x+=Math.sin(p.ph)*p.sw*.4;
+      const tw=p.a*(0.6+0.4*Math.sin(p.ph*2));
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r*3.5,0,6.28);ctx.fillStyle=`rgba(${p.c},${(tw*.12).toFixed(3)})`;ctx.fill();
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fillStyle=`rgba(${p.c},${tw.toFixed(3)})`;ctx.fill();
+      if(p.y<-20)Object.assign(p,spawn(false));
+    }
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
 </body>
 </html>
-
