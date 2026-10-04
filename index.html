@@ -291,7 +291,7 @@ footer a{color:var(--sky);text-decoration:none}footer a:hover{text-decoration:un
     <figure class="panel"><img src="assets/panel-examiner.jpg" alt="Kai grins: Morning, examiner"><figcaption>Morning, examiner</figcaption></figure>
     <figure class="panel"><img src="assets/panel-rooftop.jpg" alt="Kai on the rooftop at dawn — He brought a ladder"><figcaption>He brought a ladder</figcaption></figure>
 
-    <p class="pnote reveal">Chapter 1 is free &mdash; tap it below to read. The rest are locked&hellip; for now.</p>
+    <p class="pnote reveal">Chapters 1 and 2 are free &mdash; tap either below to read. The rest are locked&hellip; for now.</p>
   </div>
 </section>
 
@@ -299,7 +299,7 @@ footer a{color:var(--sky);text-decoration:none}footer a:hover{text-decoration:un
   <div class="wrap">
     <div class="eyebrow reveal">Season 1</div>
     <h2 class="reveal d1">Fifteen chapters.<br>Two hundred fifty-five pages.</h2>
-    <p class="lede reveal d2">The complete first season in full color &mdash; from the Awakening Hall to the night the Gate noticed him back. Chapter 1 is free to read; the rest drop soon.</p>
+    <p class="lede reveal d2">The complete first season in full color &mdash; from the Awakening Hall to the night the Gate noticed him back. Chapters 1 and 2 are free to read; the rest drop soon.</p>
     <div class="chap-grid" id="chapGrid"></div>
     <p class="season-note reveal"><b>BE ON THE LOOKOUT</b> &mdash; new chapters drop here first.</p>
   </div>
@@ -362,7 +362,7 @@ const chapters=[
 const cols=['b','r','g'],grid=document.getElementById('chapGrid');
 chapters.forEach(([t,p],i)=>{
   const d=document.createElement('div');
-  const locked=i>0;
+  const locked=i>1;
   d.className='chap reveal'+(locked?' locked':'');d.title=locked?'Locked — be on the lookout':'Tap to read';
   d.innerHTML=`<span class="cnum ${cols[i%3]}">Chapter ${String(i+1).padStart(2,'0')}</span>`+(locked?`<br><span class="lockbadge">&#128274; Locked</span>`:'')+`<h3>${t}</h3><div class="pg">${p} pages &mdash; full color</div>`+(locked?`<span class="tap">Be on the lookout</span>`:`<span class="tap">Tap to read &rarr;</span>`);
   d.onclick=()=>openChapter(i);
@@ -375,7 +375,7 @@ const reader=document.getElementById('reader'),rBody=document.getElementById('rB
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');rio.unobserve(e.target)}}),{root:rBody,threshold:.08});
 function openChapter(i){
   curCh=i;
-  const locked=i>0;
+  const locked=i>1;
   document.getElementById('rNum').textContent=String(i+1).padStart(2,'0');
   document.getElementById('rTitle').textContent=chapters[i][0];
   rPages.innerHTML='';
