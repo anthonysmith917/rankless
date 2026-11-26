@@ -153,15 +153,7 @@ section.block{padding:104px 5vw}
 #rCount{font-size:11px;letter-spacing:.24em;color:var(--silver);font-weight:700}
 .chap{cursor:pointer}
 .chap .tap{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-top:12px;display:block}
-.chap.locked .tap{color:var(--muted)}
-.lockbadge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.2em;color:#fff;background:var(--ink);
   padding:7px 14px;border-radius:999px;margin-bottom:14px;text-transform:uppercase}
-.rlock{max-width:520px;margin:9vh auto;text-align:center;color:#fff;padding:40px 20px;animation:rlockin .5s ease}
-@keyframes rlockin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.rlock .big{font-size:64px;margin-bottom:22px;filter:drop-shadow(0 0 24px rgba(193,145,31,.5))}
-.rlock h3{font-size:30px;letter-spacing:-.02em;margin-bottom:12px}
-.rlock p{color:#a5a39a;line-height:1.7;font-size:16px}
-.rlock p b{color:var(--gold);letter-spacing:.18em}
 
 /* chapters */
 .chap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:54px}
@@ -243,7 +235,7 @@ footer a{color:var(--sky);text-decoration:none}footer a:hover{text-decoration:un
       <p class="sub reveal d2">Everyone awakens to <b>one class</b>. Kai Drane drew the gray card &mdash; the one the system calls <b>Unclassified</b> &mdash; and it can learn <b>them all</b>.</p>
       <div class="hcta reveal d3">
         <a class="btn" href="#chapters">Explore 15 chapters</a>
-        <button class="btn ghost" onclick="openChapter(0)">Read Chapter 1 free</button>
+        <button class="btn ghost" onclick="openChapter(0)">Read Chapter 1</button>
       </div>
     </div>
     <div class="artwrap">
@@ -291,7 +283,7 @@ footer a{color:var(--sky);text-decoration:none}footer a:hover{text-decoration:un
     <figure class="panel"><img src="assets/panel-examiner.jpg" alt="Kai grins: Morning, examiner"><figcaption>Morning, examiner</figcaption></figure>
     <figure class="panel"><img src="assets/panel-rooftop.jpg" alt="Kai on the rooftop at dawn — He brought a ladder"><figcaption>He brought a ladder</figcaption></figure>
 
-    <p class="pnote reveal">Chapters 1 and 2 are free &mdash; tap either below to read. The rest are locked&hellip; for now.</p>
+    <p class="pnote reveal">All 15 chapters are free &mdash; choose any chapter below to start reading.</p>
   </div>
 </section>
 
@@ -299,9 +291,9 @@ footer a{color:var(--sky);text-decoration:none}footer a:hover{text-decoration:un
   <div class="wrap">
     <div class="eyebrow reveal">Season 1</div>
     <h2 class="reveal d1">Fifteen chapters.<br>Two hundred fifty-five pages.</h2>
-    <p class="lede reveal d2">The complete first season in full color &mdash; from the Awakening Hall to the night the Gate noticed him back. Chapters 1 and 2 are free to read; the rest drop soon.</p>
+    <p class="lede reveal d2">The complete first season in full color &mdash; from the Awakening Hall to the night the Gate noticed him back. All 15 chapters are available to read for free.</p>
     <div class="chap-grid" id="chapGrid"></div>
-    <p class="season-note reveal"><b>BE ON THE LOOKOUT</b> &mdash; new chapters drop here first.</p>
+    <p class="season-note reveal"><b>SEASON 1 COMPLETE</b> &mdash; read all 15 chapters below.</p>
   </div>
 </section>
 
@@ -362,36 +354,30 @@ const chapters=[
 const cols=['b','r','g'],grid=document.getElementById('chapGrid');
 chapters.forEach(([t,p],i)=>{
   const d=document.createElement('div');
-  const locked=i>1;
-  d.className='chap reveal'+(locked?' locked':'');d.title=locked?'Locked — be on the lookout':'Tap to read';
-  d.innerHTML=`<span class="cnum ${cols[i%3]}">Chapter ${String(i+1).padStart(2,'0')}</span>`+(locked?`<br><span class="lockbadge">&#128274; Locked</span>`:'')+`<h3>${t}</h3><div class="pg">${p} pages &mdash; full color</div>`+(locked?`<span class="tap">Be on the lookout</span>`:`<span class="tap">Tap to read &rarr;</span>`);
+  d.className='chap reveal';d.title='Tap to read';
+  d.innerHTML=`<span class="cnum ${cols[i%3]}">Chapter ${String(i+1).padStart(2,'0')}</span><h3>${t}</h3><div class="pg">${p} pages &mdash; full color</div><span class="tap">Tap to read &rarr;</span>`;
   d.onclick=()=>openChapter(i);
   grid.appendChild(d);
 });
 // chapter reader popup
-const chapterPages=[16,16,17,17,18,16,16,15,18,18,18,18,17,18,17];
+const chapterPages=chapters.map(([,pages])=>pages);
 let curCh=0;
 const reader=document.getElementById('reader'),rBody=document.getElementById('rBody'),rPages=document.getElementById('rPages');
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');rio.unobserve(e.target)}}),{root:rBody,threshold:.08});
 function openChapter(i){
   curCh=i;
-  const locked=i>1;
   document.getElementById('rNum').textContent=String(i+1).padStart(2,'0');
   document.getElementById('rTitle').textContent=chapters[i][0];
   rPages.innerHTML='';
-  if(locked){
-    rPages.innerHTML=`<div class="rlock"><div class="big">&#128274;</div><h3>Chapter ${i+1} is locked</h3><p><b>BE ON THE LOOKOUT</b><br>New chapters drop here first.</p></div>`;
-  }else{
-    for(let p=1;p<=chapterPages[i];p++){
-      const f=document.createElement('figure');f.className='rpage';
-      f.innerHTML=`<img loading="eager" src="assets/chapters/ch${String(i+1).padStart(2,'0')}/p${String(p).padStart(2,'0')}.jpg?v=20260920" alt="Chapter ${i+1}, page ${p}"><div class="rpgnum">&mdash; ${p} &mdash;</div>`;
-      rPages.appendChild(f);rio.observe(f);
-    }
+  for(let p=1;p<=chapterPages[i];p++){
+    const f=document.createElement('figure');f.className='rpage';
+    f.innerHTML=`<img loading="eager" src="assets/chapters/ch${String(i+1).padStart(2,'0')}/p${String(p).padStart(2,'0')}.jpg?v=20260920" alt="Chapter ${i+1}, page ${p}"><div class="rpgnum">&mdash; ${p} &mdash;</div>`;
+    rPages.appendChild(f);rio.observe(f);
   }
   rBody.scrollTop=0;
   document.getElementById('rPrev').disabled=i===0;
   document.getElementById('rNext').disabled=i===chapterPages.length-1;
-  document.getElementById('rCount').textContent=locked?'LOCKED':`${chapterPages[i]} PAGES`;
+  document.getElementById('rCount').textContent=`${chapterPages[i]} PAGES`;
   reader.classList.add('open');reader.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
 }
